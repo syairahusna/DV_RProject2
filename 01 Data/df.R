@@ -63,17 +63,14 @@ npi_df %>% ungroup()
 npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, color = as.factor(gender))) + geom_point()
 npi_df %>% ungroup()
 
-#boxplot(elapse~score, data = npi_df, xlab= "Score", ylab= "time taken to complete the test" )
+boxplot(elapse~score, data = npi_df, xlab= "Score", ylab= "time taken to complete the test based on narcissistic tendency" )
 
 hist(npi_df$score, breaks=20, col="red")
 
-boxplot(score~gender, data = npi_df, xlab= "gender", ylab= "Tendency towards Narcicissm" )
+boxplot(score~gender, data = npi_df, xlab= "gender", ylab= "Score - Tendency towards Narcicissm" )
 
 npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, color = as.factor(gender))) + geom_point()
 npi_df %>% ungroup()
-
-
-ggplot(aes(x= score, y = age, color = as.factor(gender))) + geom_point() 
 
 
 
