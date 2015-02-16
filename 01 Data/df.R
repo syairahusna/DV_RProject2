@@ -121,7 +121,7 @@ npi_df$Q38 <- as.factor(npi_df$Q38)
 npi_df$Q39 <- as.factor(npi_df$Q39)
 npi_df$Q40 <- as.factor(npi_df$Q40)
 
-#creating modified data frame in which all the questions are trasnfo
+#creating modified data frame in which all the questions are transformed
 mdf <- melt(npi_df, id=c("score", "elapse", "age", "gender"))
 
 mdf %>% ggplot(aes(x= value, color = value)) + geom_bar() + facet_wrap(~variable) +  xlab("Type of Response") + ylab("Number of Participants") + ggtitle("Participants' Response to All Questions in NPI Test") + scale_colour_manual(values=c("red","green","blue")) 

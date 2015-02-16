@@ -1,0 +1,1 @@
+unanswered_mdf %>% ggplot(aes(variable, fill = variable)) + geom_bar(fill="#FF6666", colour="black") + facet_grid(gender ~ .) + xlab("Questions") + ylab("Number of Participants") + ggtitle("Participants' Non-Response in NPI Test (By Gender)") 

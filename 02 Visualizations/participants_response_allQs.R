@@ -1,0 +1,1 @@
+mdf %>% ggplot(aes(x= value, color = value)) + geom_bar() + facet_wrap(~variable) +  xlab("Type of Response") + ylab("Number of Participants") + ggtitle("Participants' Response to All Questions in NPI Test") + scale_colour_manual(values=c("red","green","blue")) 

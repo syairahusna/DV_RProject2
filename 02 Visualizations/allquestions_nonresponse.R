@@ -1,0 +1,1 @@
+unanswered_mdf %>% ggplot(aes(x= variable)) + geom_bar()

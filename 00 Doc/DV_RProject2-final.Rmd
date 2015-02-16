@@ -43,6 +43,36 @@ This visualization shows that the majority participants scored between 7 and 18.
 source("../02 Visualizations/tendency_by_age_gender.R", echo = TRUE)
 ```
 
+
+
 In the graph above, 0 = Not Identified, 1 = Male, 2 = F, 3 = Other
 The plot shows that overall narcissim decreases slightly with age, regardless of gender. The negative correlation shows narcissistic expressions appears to be more frequent with the younger generation.
+
+The boxplot below shows a clearer relationship between gender and score.
+
+```{r}
+source("../02 Visualizations/boxplot_score_gender.R", echo = TRUE)
+```
+
+```{r}
+source("../01 Data/modified_df.R", echo = TRUE)
+```
+
+```{r}
+source("../02 Visualizations/participants_response_allQs.R", echo = TRUE)
+```
+
+
+```{r}
+source("../01 Data/subsetof_modified_df.R", echo = TRUE)
+```
+
+
+```{r}
+source("../02 Visualizations/allquestions_nonresponse.R", echo = TRUE)
+```
+
+```{r}
+source("../02 Visualizations/nonresponse_bygender.R", echo = TRUE)
+```
 
