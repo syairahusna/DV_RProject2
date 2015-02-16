@@ -1,1 +1,1 @@
-boxplot(score~gender, data = npi_df, xlab= "gender", names = c("No Gender", "Women", "Men", "Other"), ylab= "Participants' Score (Score)", main = "The Score Distribution of Narcisstic Personality Inventory (NPI) Based On Gender", col="light green")
+boxplot(score~gender, data = npi_df, xlab= "gender", names = c("0 - No Gender", "1 - Men", "2 - Women", "3 - Other"), ylab= "Participants' Score (Score)", main = "The Score Distribution of NPI Based On Gender", col="light green")
