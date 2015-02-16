@@ -23,7 +23,7 @@ source("../01 Data/full_df.R", echo = TRUE)
 source("../01 Data/column_rename.R", echo = FALSE)
 ```
 
-The data set is too big to display all 44 columns in this HTML document, thus the following shows a subset of the dataframe that are just loaded into R.
+The data set is too large to display all 44 columns in this HTML document, thus the following shows a subset of the dataframe that are just loaded into R.
 
 ```{r}
 source("../01 Data/display_subset.R", echo = TRUE)
@@ -31,12 +31,10 @@ source("../01 Data/display_subset.R", echo = TRUE)
 
 ### Visualizations
 
-Once we have the data loaded from oracle, we can begin visualizing different data sets. One interesting observation would be to see the distribution of the scores across the number of participants.
-
+Once we have the data loaded from oracle, we can begin visualizing different data subsets. One interesting observation would be to see the distribution of scores across the number of participants.
 
 ```{r}
 source("../02 Visualizations/score_dist.R", echo = TRUE)
 ```
 
-
-
+This visualization shows that the majority participants scored between 7 and 18.
