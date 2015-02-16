@@ -1,4 +1,9 @@
+#loading the packages needed
 require(RCurl)
+require(tidyr)
+require(dplyr)
+require(ggplot2)
+require(reshape2)
 
 npi_df <- data.frame(eval(parse(text=substring(getURL(URLencode('http://129.152.144.84:5001/rest/native/?query="SELECT score, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q31, Q32, Q33, Q34, Q35, Q36, Q37, Q38, Q39, Q40, elapse, gender, age FROM NPI"'), httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_nm22335', PASS='orcl_nm22335', MODE='native_mode', MODEL='model', returnFor = 'R', returnDimensions = 'False'), verbose = TRUE), 1, 2^31-1))))
 
@@ -51,26 +56,81 @@ names(npi_df)[42] <- "elapse"
 names(npi_df)[43] <- "gender"
 names(npi_df)[44] <- "age"
 
-require(tidyr)
-require(dplyr)
-require(ggplot2)
 
 npi_df$gender <- as.factor(npi_df$gender)
 
 npi_df %>% group_by(score, age, gender) %>% ggplot(aes(x= age, y = score, color=gender)) + geom_point() + facet_wrap(~gender)
 npi_df %>% ungroup()
 
+
 npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, color = as.factor(gender))) + geom_point()
 npi_df %>% ungroup()
 
+#do facet wrap to better represent the data
 boxplot(elapse~score, data = npi_df, xlab= "Score", ylab= "time taken to complete the test based on narcissistic tendency" )
 
-hist(npi_df$score, breaks=20, col="red")
+
+hist(npi_df$score, breaks=20, col="pink")
+
 
 boxplot(score~gender, data = npi_df, xlab= "gender", ylab= "Score - Tendency towards Narcicissm" )
 
-npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, color = as.factor(gender))) + geom_point()
-npi_df %>% ungroup()
+ 
+#changing the class of all forty questions
+npi_df$Q1 <- as.factor(npi_df$Q1)
+npi_df$Q2 <- as.factor(npi_df$Q2)
+npi_df$Q3 <- as.factor(npi_df$Q3)
+npi_df$Q4 <- as.factor(npi_df$Q4)
+npi_df$Q5 <- as.factor(npi_df$Q5)
+npi_df$Q6 <- as.factor(npi_df$Q6)
+npi_df$Q7 <- as.factor(npi_df$Q7)
+npi_df$Q8 <- as.factor(npi_df$Q8)
+npi_df$Q9 <- as.factor(npi_df$Q9)
+npi_df$Q10 <- as.factor(npi_df$Q10)
+npi_df$Q11 <- as.factor(npi_df$Q11)
+npi_df$Q12 <- as.factor(npi_df$Q12)
+npi_df$Q13 <- as.factor(npi_df$Q13)
+npi_df$Q14 <- as.factor(npi_df$Q14)
+npi_df$Q15 <- as.factor(npi_df$Q15)
+npi_df$Q16 <- as.factor(npi_df$Q16)
+npi_df$Q17 <- as.factor(npi_df$Q17)
+npi_df$Q18 <- as.factor(npi_df$Q18)
+npi_df$Q19 <- as.factor(npi_df$Q19)
+npi_df$Q20 <- as.factor(npi_df$Q20)
+npi_df$Q21 <- as.factor(npi_df$Q21)
+npi_df$Q22 <- as.factor(npi_df$Q22)
+npi_df$Q23 <- as.factor(npi_df$Q23)
+npi_df$Q24 <- as.factor(npi_df$Q24)
+npi_df$Q25 <- as.factor(npi_df$Q25)
+npi_df$Q26 <- as.factor(npi_df$Q26)
+npi_df$Q27 <- as.factor(npi_df$Q27)
+npi_df$Q28 <- as.factor(npi_df$Q28)
+npi_df$Q29 <- as.factor(npi_df$Q29)
+npi_df$Q30 <- as.factor(npi_df$Q30)
+npi_df$Q31 <- as.factor(npi_df$Q31)
+npi_df$Q32 <- as.factor(npi_df$Q32)
+npi_df$Q33 <- as.factor(npi_df$Q33)
+npi_df$Q34 <- as.factor(npi_df$Q34)
+npi_df$Q35 <- as.factor(npi_df$Q35)
+npi_df$Q36 <- as.factor(npi_df$Q36)
+npi_df$Q37 <- as.factor(npi_df$Q37)
+npi_df$Q38 <- as.factor(npi_df$Q38)
+npi_df$Q39 <- as.factor(npi_df$Q39)
+npi_df$Q40 <- as.factor(npi_df$Q40)
+
+#creating modified data frame in which all the questions are trasnfo
+mdf <- melt(npi_df, id=c("score", "elapse", "age", "gender"))
+
+mdf %>% ggplot(aes(x= value)) + geom_bar() + facet_wrap(~variable)
+
+# create a subset of mdf specifically for questions that were left unanswered
+unanswered_mdf <- subset(mdf, value == 0)
+
+
+unanswered_mdf %>% ggplot(aes(x= variable)) + geom_bar()
+
+unanswered_mdf %>% ggplot(aes(variable, fill = variable)) + geom_bar(fill="#FF6666", colour="black") + facet_grid(gender ~ .)
+
 
 
 
