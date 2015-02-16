@@ -31,7 +31,8 @@ source("../01 Data/display_subset.R", echo = TRUE)
 
 ### Visualizations
 
-There are 11326 records in the cleaned data set. One interesting observation would be to see the distribution of the scores in this data set.
+Once we have the data loaded from oracle, we can begin visualizing different data sets. One interesting observation would be to see the distribution of the scores across the number of participants.
+
 
 ```{r}
 source("../02 Visualizations/score_dist.R", echo = TRUE)
