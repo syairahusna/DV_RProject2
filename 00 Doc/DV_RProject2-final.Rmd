@@ -37,4 +37,11 @@ Once we have the data loaded from oracle, we can begin visualizing different dat
 source("../02 Visualizations/score_dist.R", echo = TRUE)
 ```
 
-This visualization shows that the majority participants scored between 7 and 18.
+This visualization shows that the majority participants scored between 7 and 18. A median number around 600 participants answered around 10 narcissistic tendency questions on average. Participants had an overall average score of. 
+
+npi_df %>% group_by(score, age, gender) %>% ggplot(aes(x= age, y = score, color=gender)) + geom_point() + facet_wrap(~gender) + xlab("Participants' Age") + ylab("Tendency Towards Narcissicm") + ggtitle("Narcisstic Tendency By Age & Gender")
+
+
+In the graph below, 0 = Not Identified, 1 = Male, 2 = F, 3 = Other
+The plot shows that overall narcissim decreases slightly with age, regardless of gender. The negative correlation shows narcissistic tendencies are frequent with lower age.
+
