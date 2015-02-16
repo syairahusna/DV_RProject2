@@ -1,0 +1,2 @@
+
+npi_df %>% ggplot(aes(score)) + geom_histogram(binwidth=1, fill = "brown", color ="pink") + xlab("Participants' Score (Score)") + ylab("Number of Participants") + ggtitle("The Score Distribution of Narcisstic Personality Inventory (NPI)")

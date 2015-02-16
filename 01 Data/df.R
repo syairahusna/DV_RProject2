@@ -59,21 +59,24 @@ names(npi_df)[44] <- "age"
 
 npi_df$gender <- as.factor(npi_df$gender)
 
-npi_df %>% group_by(score, age, gender) %>% ggplot(aes(x= age, y = score, color=gender)) + geom_point() + facet_wrap(~gender)
+
+npi_df %>% group_by(score, age, gender) %>% ggplot(aes(x= age, y = score, color=gender)) + geom_point() + facet_wrap(~gender) + xlab("Participants' Age") + ylab("Tendency Towards Narcissicm") + ggtitle("Narcisstic Tendency By Age & Gender")
 npi_df %>% ungroup()
 
 
-npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, color = as.factor(gender))) + geom_point()
+npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, color = as.factor(gender))) + geom_point() + xlab("Participants' Score") + ylab("Time Taken to Complete the Personality Test") + ggtitle("Narcisstic Tendency By Duration of Test Completion")
 npi_df %>% ungroup()
 
-#do facet wrap to better represent the data
-boxplot(elapse~score, data = npi_df, xlab= "Score", ylab= "time taken to complete the test based on narcissistic tendency" )
+#do facet wrap to better represent the data, make it more specific
+boxplot(elapse~score, data = npi_df, xlab= "Participants' Score (Score)", ylab= "Time Taken to Complete the Personality Test", main = "Exploring Narcisstic Tendency Based On Gender and the Duration of Test Completion")
 
 
-hist(npi_df$score, breaks=20, col="pink")
+#hist(score,xlab ="Participants' Score (Score)", ylab = "Number of Participants", main = "The Score Distribution of Narcisstic Personality Inventory (NPI)", breaks=20, col="pink")
+
+npi_df %>% ggplot(aes(score)) + geom_histogram(binwidth=1, fill = "brown", color ="pink") + xlab("Participants' Score (Score)") + ylab("Number of Participants") + ggtitle("The Score Distribution of Narcisstic Personality Inventory (NPI)")
 
 
-boxplot(score~gender, data = npi_df, xlab= "gender", ylab= "Score - Tendency towards Narcicissm" )
+boxplot(score~gender, data = npi_df, xlab= "gender", names = c("No Gender", "Women", "Men", "Other"), ylab= "Participants' Score (Score)", main = "The Score Distribution of Narcisstic Personality Inventory (NPI) Based On Gender", col="light green")
 
  
 #changing the class of all forty questions
@@ -121,7 +124,7 @@ npi_df$Q40 <- as.factor(npi_df$Q40)
 #creating modified data frame in which all the questions are trasnfo
 mdf <- melt(npi_df, id=c("score", "elapse", "age", "gender"))
 
-mdf %>% ggplot(aes(x= value)) + geom_bar() + facet_wrap(~variable)
+mdf %>% ggplot(aes(x= value, color = value)) + geom_bar() + facet_wrap(~variable) +  xlab("Type of Response") + ylab("Number of Participants") + ggtitle("Participants' Response to All Questions in NPI Test") + scale_colour_manual(values=c("red","green","blue")) 
 
 # create a subset of mdf specifically for questions that were left unanswered
 unanswered_mdf <- subset(mdf, value == 0)
@@ -129,7 +132,9 @@ unanswered_mdf <- subset(mdf, value == 0)
 
 unanswered_mdf %>% ggplot(aes(x= variable)) + geom_bar()
 
-unanswered_mdf %>% ggplot(aes(variable, fill = variable)) + geom_bar(fill="#FF6666", colour="black") + facet_grid(gender ~ .)
+unanswered_mdf %>% ggplot(aes(variable, fill = variable)) + geom_bar(fill="#FF6666", colour="black") + facet_grid(gender ~ .) + xlab("Questions") + ylab("Number of Participants") + ggtitle("Participants' Non-Response in NPI Test (By Gender)") 
+
+
 
 
 

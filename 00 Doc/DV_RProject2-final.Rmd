@@ -1,0 +1,39 @@
+---
+title: "DV_RProject2: Visualizations From Narcisstic Personality Inventory (NPI) Test"
+author: "Syairah Ridzuan, Madeline Packard, Arthur DeVitalis"
+date: "February 15, 2015"
+output: html_document
+---
+
+The Narcisstic Personality Inventory (NPI) is created by Raskin and Hall (1979) and it is designed to evaluate the narcisstic expressions that are frequently conveyed in normal circumstances. Hence, those who obtain high scores in this test are not necessarily diagnosed with Narcisstic Personality Disorder (NPD).
+
+
+**Pulling the data set from Oracle database**
+
+```{r, include=FALSE, results = "hide"}
+source("../01 Data/packages.R", echo = FALSE)
+```
+```{r}
+source("../01 Data/full_df.R", echo = TRUE)
+```
+
+```{r, include=FALSE, results = "hide"}
+source("../01 Data/column_rename.R", echo = FALSE)
+```
+
+The data set is too big to display all of its 44 columns in this HTML document. The following shows the subset of the dataframe that are just loaded into R.
+
+```{r}
+source("../01 Data/display_subset.R", echo = TRUE)
+```
+
+
+
+There are 11326 records in the cleaned data set. An interesting observation would be to see the distribution of the scores in this data set.
+
+```{r}
+source("../02 Visualizations/score_dist.R", echo = TRUE)
+```
+
+
+
