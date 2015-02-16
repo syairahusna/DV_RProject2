@@ -37,7 +37,7 @@ Once we have the data loaded from oracle, we can begin visualizing different dat
 source("../02 Visualizations/score_dist.R", echo = TRUE)
 ```
 
-This visualization shows that the majority participants scored between 7 and 18. A median number around 600 participants answered around 10 narcissistic tendency questions on average. Participants had an overall average score of. 
+This visualization shows that the majority participants scored between 7 and 18. A median number around 600 participants answered around 10 narcissistic tendency questions on average. **Participants had an overall average score of**. 
 
 ```{r}
 source("../02 Visualizations/tendency_by_age_gender.R", echo = TRUE)
@@ -45,7 +45,8 @@ source("../02 Visualizations/tendency_by_age_gender.R", echo = TRUE)
 
 
 
-In the graph above, 0 = Not Identified, 1 = Male, 2 = F, 3 = Other
+In this graph, gender is identified as: 0 = Not Identified, 1 = Male, 2 = Female, 3 = Other.
+
 The plot shows that overall narcissim decreases slightly with age, regardless of gender. The negative correlation shows narcissistic expressions appears to be more frequent with the younger generation.
 
 The boxplot below shows a clearer relationship between gender and score.
@@ -54,25 +55,46 @@ The boxplot below shows a clearer relationship between gender and score.
 source("../02 Visualizations/boxplot_score_gender.R", echo = TRUE)
 ```
 
+Women have a higher median NPI score compared to men. The median score range of men is lower but has more outliars. Though it is a wider distritubution of scores for women compared to other genders. 
+
 ```{r}
 source("../01 Data/modified_df.R", echo = TRUE)
 ```
+
+These are the responses for all the questions. **Numbers of parcipants versus gender versus question responses.**  
 
 ```{r}
 source("../02 Visualizations/participants_response_allQs.R", echo = TRUE)
 ```
 
+We're interested to see what questions received non-responses, so we took a subset of the modified dataframe to help visualize the results. 
 
 ```{r}
 source("../01 Data/subsetof_modified_df.R", echo = TRUE)
 ```
-
+We did a preliminary observation of all the non-response questions. 
 
 ```{r}
 source("../02 Visualizations/allquestions_nonresponse.R", echo = TRUE)
 ```
+Questions 35, 30, and 12 had the highest to lowest rate of not being answered. Ambiguity on taking orders and giving them is interesting on question 12. 
 
 ```{r}
 source("../02 Visualizations/nonresponse_bygender.R", echo = TRUE)
 ```
+We were curious about non-responses by gender so we plotted this. It is important to note that there is not a 0 row because participants who did not identify their gender answered all questions in this case. 
+
+Both males and females had a high rate of non-response on question 35, but almost 40 women skipped compared to 26 men:
+ Q35: 1=People sometimes believe what I tell them. 2=I can make anybody believe anything I want them to.
+Similarly, more women left these questions unanswered than men: 
+Q17. 1=If I feel competent I am willing to take responsibility for making decisions. 2=I like to take responsibility for making decisions.
+
+Men were less significantly responsive compared to women on these questions:
+ Q11. 1=I am assertive. 2=I wish I were more assertive.
+ Q17. 1=If I feel competent I am willing to take responsibility for making decisions. 2=I like to take responsibility for making decisions.
+ Q24. 1=I expect a great deal from other people. 2=I like to do things for other people.
+
+
+
+
 
