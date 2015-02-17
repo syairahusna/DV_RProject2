@@ -1,0 +1,1 @@
+npi_df$gender <- as.factor(npi_df$gender)

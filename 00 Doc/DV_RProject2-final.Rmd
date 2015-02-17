@@ -5,11 +5,11 @@ date: "February 16, 2015"
 output: html_document
 ---
 
-The Narcisstic Personality Inventory (NPI) is created by Raskin and Hall (1979) and is designed to evaluate the narcisstic expressions that are frequently conveyed in normal circumstances. Thus, those who obtain high scores in this test are not necessarily diagnosed with Narcisstic Personality Disorder (NPD).
+The Narcisstic Personality Inventory (NPI) test is created by Raskin and Hall (1979) and it is designed to evaluate narcisstic expressions frequently conveyed in normal circumstances. It is important to note that those who obtain high scores in this test are not necessarily diagnosed with Narcisstic Personality Disorder (NPD).
 
 **Pulling the Data Set from Oracle Database**
 
-The data set pulled from the Oracle database includes the participants' answers to all forty questions, along with all participant's age, gender, time taken to complete the test, and participants' score on the test.
+The data set pulled from the Oracle database includes participants' answers to all forty questions, along with participant's age, gender, time taken to complete the test, and participants' score on the test.
 
 ```{r, include=FALSE, results = "hide"}
 source("../01 Data/packages.R", echo = FALSE)
@@ -31,7 +31,7 @@ source("../01 Data/display_subset.R", echo = TRUE)
 
 ### Visualizations
 
-Once we have the data loaded from oracle, we can begin visualizing different data subsets. One interesting observation would be to see the distribution of scores across the number of participants.
+Once we have the data loaded from oracle, we begin visualizing different data subsets. One interesting observation would be to see the distribution of scores across the number of participants.
 
 ```{r}
 source("../02 Visualizations/score_dist.R", echo = TRUE)
@@ -55,21 +55,27 @@ The plot shows that overall narcissim decreases slightly with age, regardless of
 
 The boxplot below displays much clearly relationship between gender and score.
 
+```{r, include=FALSE, results="hide"}
+source("../01 Data/class_change_boxplot_score_gender.R", echo = FALSE)
+```
+
 ```{r}
 source("../02 Visualizations/boxplot_score_gender.R", echo = TRUE)
 ```
 
-Women have a higher median NPI score compared to men. The median score range of men is lower but has more outliers. Though it is a wider distritubution of scores for women compared to other genders. 
+Comparing the boxplots, men have higher median NPI score compared to women. In fact, 50% of women have NPI score that 10 or less. Men also has a wider distribution of NPI score compared to women as well the other two gender classifications, although women have a lot of scores that are outliers. 
 
 ```{r}
 source("../01 Data/modified_df.R", echo = TRUE)
 ```
 
-These are the responses for all the questions plotted on bar graphs. We're interested to see what kind of questions received many non-responses, which is indicated by 0 on the x-axis. However, notice that the scale on the y-axis is too large thus preventing us from viewing the nonresponses.
+The bar graphs below display the responses for all the questions in the NPI test.
 
-```{r, message=FALSE}
+```{r, message=FALSE, out.width = '700px', out.height = '700px'}
 source("../02 Visualizations/participants_response_allQs.R", echo = TRUE)
 ```
+We're interested to see what kind of questions received many non-responses, which is indicated by 0 on the x-axis. However, notice that the scale on the y-axis is too large thus preventing us from viewing the nonresponses.
+
 
 A better way to do this would be only to view all the records that contain the nonresponses. Hence, we took a subset of the modified dataframe to help visualize the results. 
 
@@ -79,23 +85,23 @@ source("../01 Data/subsetof_modified_df.R", echo = TRUE)
 
 Then, we did a preliminary visualization of the non-responses for all the questions by creating the following bar graph:
 
-```{r}
+```{r, out.width = '850px', out.height = '500px'}
 source("../02 Visualizations/allquestions_nonresponse.R", echo = TRUE)
 ```
 
-Questions 35, 30, and 12 are among the questions that received the most nonresponse.
+Based on the graph above, questions 35, 30, and 12 are among the questions that received the most nonresponse.
+
 The following are the questions:
 
-- Q12 1 = I like to have authority over other people. 2=I don't mind following orders.
-- Q30 1 = I really like to be the center of attention. 2=It makes me uncomfortable to be the center of attention.
-- Q35 1 = People sometimes believe what I tell them. 2=I can make anybody believe anything I want them to.
+- Q12 1 = I like to have authority over other people. 2 = I don't mind following orders.
+- Q30 1 = I really like to be the center of attention. 2 = It makes me uncomfortable to be the center of attention.
+- Q35 1 = People sometimes believe what I tell them. 2 = I can make anybody believe anything I want them to.
 
+We are curious about the non-responses by gender so we plot the bar graph below. It is important to note that there is not a graph for gender = 0. This happens to be the case because the participants who did not identify their gender chose to answer all the questions in the test (which is either response 1 or two). 
 
-```{r}
+```{r, out.width = '850px', out.height = '500px'}
 source("../02 Visualizations/nonresponse_bygender.R", echo = TRUE)
 ```
-
-We were curious about the non-responses by gender so we plotted the bar graph above. It is important to note that there is not a graph for gender = 0. This is because participants who did not identify their gender chose one of the two responses given for every question in the test. 
 
 Both males and females had a high rate of non-response on question 35, but almost 40 women avoided from specifying their answer to the question compared to 26 men:
 
@@ -109,7 +115,24 @@ Men were less significantly responsive compared to women on these questions:
 
 - Q11 1 = I am assertive. 2 = I wish I were more assertive.
 - Q17 1 = If I feel competent I am willing to take responsibility for making decisions. 2 = I like to take responsibility for making decisions.
-- Q24 1=I expect a great deal from other people. 2 = I like to do things for other people.
+- Q24 1 = I expect a great deal from other people. 2 = I like to do things for other people.
+
+
+Another quite interesting visualization is the relationship between time elapse and NPI scores of all participants regardless of age and gender. This visualization is constructed from the original data set, npi_df.
+
+```{r, include=FALSE, results="hide"}
+source("../01 Data/class_change_boxplot_score_elapse.R", echo = FALSE)
+```
+
+```{r, out.width = '850px', out.height = '500px'}
+source("../02 Visualizations/boxplot_score_elapse.R", echo = TRUE)
+```
+
+The comparison between the boxplots' width as well as the width of the distributions seem to suggest people with significantly higher NPI scores ( >35) take less time to complete the test. It is also interesting to see that there are a lot of outliers for lower NPI scores (<25); this exceeds the suggested time completion by Raskin and Hall which is between 5 to 10 minutes (300s <elapse < 600s).
+
+
+
+Note : For more information about the NPI, please read codebook.txt located in `01 Data` folder as well as visit the website at which this test is conducted (http://personality-testing.info/tests/NPI.php)
 
 
 

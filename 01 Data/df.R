@@ -68,8 +68,7 @@ npi_df %>% group_by(score, elapse, gender) %>% ggplot(aes(x= score, y = elapse, 
 npi_df %>% ungroup()
 
 #do facet wrap to better represent the data, make it more specific
-boxplot(elapse~score, data = npi_df, xlab= "Participants' Score (Score)", ylab= "Time Taken to Complete the Personality Test", main = "Exploring Narcisstic Tendency Based On Gender and the Duration of Test Completion")
-
+boxplot(elapse~score, data = npi_df, xlab= "Participants' Score (Score)", ylab= "Time Taken to Complete NPI Test", main = "Narcisstic Tendency Based On the Duration of Test Completion")
 
 #hist(score,xlab ="Participants' Score (Score)", ylab = "Number of Participants", main = "The Score Distribution of Narcisstic Personality Inventory (NPI)", breaks=20, col="pink")
 
